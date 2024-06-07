@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 
+// built-in middleware function in Express parses incoming requests with JSON 
 app.use(express.json());
 
 app.get("/", (req, res) => {
