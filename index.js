@@ -2,9 +2,10 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const Product = require('./models/product.model.js')
 const app = express();
 
-// built-in middleware function in Express parses incoming requests with JSON 
+// built-in middleware function in Express parses incoming requests with JSON این باعث میشه که API کار کنه
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -12,8 +13,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/products", (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+  try{
+
+  }catch(error){
+    res.status(500).json({message: error.message});
+  }
 });
 
 mongoose
