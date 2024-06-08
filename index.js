@@ -61,6 +61,25 @@ app.put("/api/product/:id", async (req, res) => {
     }
   });
 
+  // حذف یک محصول
+  app.delete('/api/product/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const product = await Product.findByIdAndDelete(id);
+    
+      if(!product) {
+        return res.status(404).json({message: "محصول وجود ندارد"});
+    }
+
+    res.status(200).json({message: "محصول با موفقیت حذف شد"});
+
+
+
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  })
+
 mongoose
   .connect(
     "mongodb+srv://aghp81:DAHHNyAufi9OWwLv@backenddb.qogzrsv.mongodb.net/node-crud-API?retryWrites=true&w=majority&appName=backendDB"
