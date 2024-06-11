@@ -7,6 +7,8 @@ const app = express();
 
 // built-in middleware function in Express parses incoming requests with JSON این باعث میشه که API کار کنه
 app.use(express.json());
+// built-in middleware function in Express parses for post and put request
+app.use(express.urlencoded({extended: false}));
 
 app.get("/", (req, res) => {
   res.send("Hello from node API Server");
