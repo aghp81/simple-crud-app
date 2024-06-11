@@ -10,6 +10,10 @@ app.use(express.json());
 // built-in middleware function in Express parses for post and put request
 app.use(express.urlencoded({extended: false}));
 
+
+// routes
+app.use("/api/products", productRoute);
+
 app.get("/", (req, res) => {
   res.send("Hello from node API Server");
 });
@@ -25,7 +29,7 @@ app.get("/api/products", async (req, res) => {
 });
 
 // دریافت یک محصول از دیتابیس با آی دی
-app.get("/api/product/:id", async (req, res) => {
+app.get("/api/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findById(id);
@@ -46,7 +50,7 @@ app.post("/api/products", async (req, res) => {
 });
 
 // ویرایش یک محصول
-app.put("/api/product/:id", async (req, res) => {
+app.put("/api/products/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const product = await Product.findByIdAndUpdate(id, req.body);
@@ -64,7 +68,7 @@ app.put("/api/product/:id", async (req, res) => {
   });
 
   // حذف یک محصول
-  app.delete('/api/product/:id', async (req, res) => {
+  app.delete('/api/products/:id', async (req, res) => {
     try {
       const { id } = req.params;
       const product = await Product.findByIdAndDelete(id);
